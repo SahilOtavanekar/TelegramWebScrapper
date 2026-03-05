@@ -1,0 +1,24 @@
+# Telegram Bot AI — Requirements
+# Install with: pip install -r requirements.txt
+
+# ── Telegram Bot ──────────────────────────────────────────────────────────────
+pyTelegramBotAPI==4.15.2
+
+# ── Generative AI ─────────────────────────────────────────────────────────────
+google-generativeai>=0.8.0
+
+# ── Data Schemas ──────────────────────────────────────────────────────────────
+pydantic==2.6.3
+
+# ── Airtable ───────────────────────────────────────────────────────────────────
+pyairtable==2.3.0
+
+# ── Environment Variables ─────────────────────────────────────────────────────
+python-dotenv==1.0.1
+
+# ── Serverless Deployment (Modal) ────────────────────────────────────────────
+modal>=0.73.0
+
+# ── Web Scraping (Playwright) ─────────────────────────────────────────────────
+# After install, run: playwright install chromium
+playwright>=1.44.0
