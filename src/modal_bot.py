@@ -105,12 +105,14 @@ def process_message(request_body: dict):
             return preview
 
         model = genai.GenerativeModel(
-            model_name="gemini-2.5-flash",
+            model_name="gemini-2.0-flash",
             tools=[scrape_and_save_leads, search_existing_leads],
             system_instruction=(
-                "You are a professional, helpful assistant managing a lead generation system. "
-                "When the user asks to find new leads or scrape data, call the scrape_and_save_leads tool. "
-                "When the user asks to view existing leads, search the database, or pull data, call the search_existing_leads tool. "
+                "You are a professional lead generation assistant. Your primary goal is to help users gather and manage leads.\n\n"
+                "GUIDELINES FOR TOOL SELECTION:\n"
+                "1. SCRAPE NEW DATA: If the user asks to 'find', 'get', 'scrape', or 'search' for leads (e.g., 'Find 5 tailors in Kandivali'), ALWAYS use `scrape_and_save_leads`. Assume they want fresh data from the web unless they explicitly mention the 'database' or 'previously saved' leads.\n"
+                "2. SEARCH DATABASE: If the user explicitly mentions 'database', 'existing', 'already saved', or asks to 're-view' leads, use `search_existing_leads`.\n"
+                "3. If `search_existing_leads` returns no results, tell the user you found nothing in the database and ask if they would like you to scrape Google Maps instead.\n\n"
                 "Provide clear, conversational answers. Return only the user-facing text."
             )
         )
